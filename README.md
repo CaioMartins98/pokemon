@@ -17,16 +17,17 @@
   </summary><br>
   
  - [TypeScript](https://www.typescriptlang.org/)
- - [Yup](https://www.npmjs.com/package/yup?activeTab=readme)
+ - [yup](https://www.npmjs.com/package/yup?activeTab=readme)
  - [PNPM](https://pnpm.io/installation)
  - [ReactJS](https://react.dev/)
  - [Axios](https://axios-http.com/docs/intro)
  - [NextJS](https://nextjs.org/)
  - [Swiper](https://swiperjs.com/demos)
  - [Dotenv](https://www.npmjs.com/package/dotenv)
- - [Toastify](https://www.npmjs.com/package/react-toastify)
  - [React-Hook-Form](https://react-hook-form.com/)
  - [Styled-Components](https://styled-components.com/)
+ - [Toastify](https://www.npmjs.com/package/react-toastify)
+ - [Inversify] (https://www.npmjs.com/package/inversify?activeTab=readme)
 
 </details>
  
@@ -47,6 +48,7 @@ pnpm run dev
 Desenvolver um web app em Typescript, a partir deste projeto nextjs (clone o repositório e desenvolva em cima dele), que implemente o design descrito na próxima seção.
 
 ### Requisitos
+- Testes unitarios utilizando
 - Tratar possíveis erros de API
 - Demonstrar conhecimento do uso de hooks
 - Criar um código desacoplado, organizado e testável
@@ -56,12 +58,10 @@ Desenvolver um web app em Typescript, a partir deste projeto nextjs (clone o rep
 - Obrigatório o uso do react-hook-form + yup para o desenvolvimento do formulário
 - Deve ser usado Page Router do next.js e não a nova versão >=14.0.0 no desenvolvimento deste projeto.
 - Demonstrar organização, desacoplamento e separação de responsabilidades no código; obrigatório o uso de inversify + clean architecture
-
-### Diferencial
-- Demonstrar conhecimentos de técnicas específicas de NextJS para lidar com estilos e server-side rendering.
-- Demonstrar em pelo menos 1 chamada de api o uso de SSR Next.js
 - Demonstrar conhecimento com react-query.
 - Demonstrar conhecimento em classes javascript POO.
+- Demonstrar conhecimentos de técnicas específicas de NextJS para lidar com estilos e server-side rendering.
+- Testes unitarios e de integração utilizando jest + cypress
 
 ### Uso de APIs
 - Usar `http://localhost:3000/api/scheduling/date` para puxar as datas disponíveis para agendamento
