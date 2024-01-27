@@ -11,7 +11,7 @@ export const Container = styled.div`
   background-size: cover; 
   background-position: center;
 `;
- 
+
 export const Description = styled.span`
   font-size: 32px;
   color: #fff;
