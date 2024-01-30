@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import type { AppProps } from "next/app";
-import "../../node_modules/swiper";
+import "swiper";
 import "../styles/global.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";

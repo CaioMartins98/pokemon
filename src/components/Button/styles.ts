@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const ButtonField = styled.button<{ selected: boolean }>`
+ const ButtonField = styled.button<{ selected: boolean }>`
   padding: 10px;
-  background-color: ${({ selected }) => (selected ? '#E40F0F' : "transparent")};
+  background-color: ${({ selected }) => (selected ? "#E40F0F" : "transparent")};
   color: ${({ selected }) => (selected ? "white" : "black")};
   min-width: 180px;
   height: 42px;
@@ -12,7 +12,13 @@ export const ButtonField = styled.button<{ selected: boolean }>`
 
   &:active,
   &:focus {
-    background-color: #E40F0F;
+    background-color: #e40f0f;
     color: white;
   }
 `;
+
+const Styled = {
+  ButtonField,
+};
+
+export default Styled;

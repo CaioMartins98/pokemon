@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import AgendarConsulta from "../src/pages/agendar-consulta";
+import AgendarConsulta from "../src/pages/agendar-consulta/index.page";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "next/router";
 

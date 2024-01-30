@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonField } from "./styles";
+import Styled from "./styles";
 interface ButtonProps {
   selectedButton: string;
   handleButtonClick: (buttonName: string) => void;
@@ -14,14 +14,14 @@ function Button({
 }: ButtonProps) {
   return (
     <>
-      <ButtonField
+      <Styled.ButtonField
         selected={selectedButton === route}
         onClick={() => {
           handleButtonClick(route);
         }}
       >
         {buttonTitle}
-      </ButtonField>
+      </Styled.ButtonField>
     </>
   );
 }

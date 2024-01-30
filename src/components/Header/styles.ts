@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 const initialWidth = 260;
 const finalWidth = 60;
 
-export const HeaderContainer = styled.div`
+const HeaderContainer = styled.div`
   width: 98%;
   height: 104px;
   display: flex;
@@ -19,7 +19,7 @@ export const HeaderContainer = styled.div`
   }
 `;
 
-export const ButtonContainer = styled.div`
+const ButtonContainer = styled.div`
   width: 540px;
   display: flex;
   align-items: center;
@@ -30,14 +30,15 @@ export const ButtonContainer = styled.div`
   }
 `;
 
-export const Container = styled.div<{ width: number }>`
+const Container = styled.div<{ width: number }>`
   width: ${({ width }) => width}px;
+  max-width: ${({ width }) => width}px;
   height: 60px;
   border-radius: 50px;
   background-color: #e40f0f;
   display: flex;
   align-items: center;
-   &:hover {
+  &:hover {
     width: 260px !important;
     cursor: pointer;
   }
@@ -56,18 +57,28 @@ const shrinkAnimation = keyframes`
   }
 `;
 
-export const ShrinkContainer = styled(Container)`
+const ShrinkContainer = styled(Container)`
   animation: ${shrinkAnimation} 0.7s ease-in-out 5s forwards;
 
   &:hover {
     width: 260px !important;
+    max-width: 260px !important;
     cursor: pointer;
   }
 `;
 
-export const Title = styled.span`
+const Title = styled.span`
   font-size: 20px;
   color: #fff;
   font-weight: 600;
   margin-left: 10px;
 `;
+
+const StyledComponents = {
+  HeaderContainer,
+  ButtonContainer,
+  Container,
+  ShrinkContainer,
+  Title,
+};
+export default StyledComponents;

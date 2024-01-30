@@ -1,11 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import {
-  ButtonContainer,
-  Container,
-  HeaderContainer,
-  ShrinkContainer,
-  Title,
-} from "./styles";
+import Styled from "./styles";
 import { useRouter } from "next/router";
 import Button from "../Button/button-component";
 import Image from "next/image";
@@ -17,9 +12,12 @@ function Header() {
 
   useEffect(() => {
     if (router) {
-      const timeout = setTimeout(() => {
-        setWidth(router.pathname !== "/home" ? 0 : 5000);
-      }, 0);
+      const timeout = setTimeout(
+        () => {
+          setWidth(60);
+        },
+        router.pathname !== "/home" ? 0 : 5000
+      );
 
       return () => clearTimeout(timeout);
     }
@@ -49,32 +47,32 @@ function Header() {
   const handleMouseLeave = () => {
     return setWidth(60);
   };
-
+  
   return (
-    <HeaderContainer>
+    <Styled.HeaderContainer>
       <>
         {router?.pathname === "/home" ? (
-          <ShrinkContainer
+          <Styled.ShrinkContainer
             width={width}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
             <Image src={PokeBall} alt="pokeball" />
-            {width >= 260 && <Title>Centro Pokémon</Title>}
-          </ShrinkContainer>
+            {width >= 260 && <Styled.Title>Centro Pokémon</Styled.Title>}
+          </Styled.ShrinkContainer>
         ) : (
-          <Container
+          <Styled.Container
             width={width}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
             <Image src={PokeBall} alt="pokeball" />
-            {width >= 260 && <Title>Centro Pokémon</Title>}
-          </Container>
+            {width >= 260 && <Styled.Title>Centro Pokémon</Styled.Title>}
+          </Styled.Container>
         )}
       </>
 
-      <ButtonContainer>
+      <Styled.ButtonContainer>
         <Button
           buttonTitle="Início"
           route="/home"
@@ -99,8 +97,8 @@ function Header() {
             handleButtonClick("/agendar-consulta");
           }}
         />
-      </ButtonContainer>
-    </HeaderContainer>
+      </Styled.ButtonContainer>
+    </Styled.HeaderContainer>
   );
 }
 

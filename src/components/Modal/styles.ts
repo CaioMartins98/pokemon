@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledDialog = styled.dialog`
+const StyledDialog = styled.dialog`
   width: 500px;
   padding: 20px;
   background-color: #fff;
@@ -13,14 +13,14 @@ export const StyledDialog = styled.dialog`
   position: relative;
 `;
 
-export const Title = styled.span`
+const Title = styled.span`
   color: #1d1d1d;
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 20px;
 `;
 
-export const HeaderContainer = styled.div`
+const HeaderContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@ export const HeaderContainer = styled.div`
   border-bottom: 1px solid #d5d5d5;
 `;
 
-export const Overlay = styled.div`
+const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -42,10 +42,19 @@ export const Overlay = styled.div`
   align-items: center;
 `;
 
-export const CloseButton = styled.span`
+const CloseButton = styled.span`
   font-weight: 700;
   font-size: 20px;
   color: #a9a9a9;
   cursor: pointer;
   margin-bottom: 20px;
 `;
+
+const StyledComponents = {
+  CloseButton,
+  HeaderContainer,
+  Overlay,
+  StyledDialog,
+  Title,
+};
+export default StyledComponents;

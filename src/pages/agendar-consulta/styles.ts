@@ -1,15 +1,10 @@
 import styled from "styled-components";
 
-interface ErrorProps {
-  error?: boolean;
-}
-
-
-export const Container = styled.div`
+const Container = styled.div`
   overflow-x: hidden;
 `;
 
-export const MainContainer = styled.div`
+const MainContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +14,7 @@ export const MainContainer = styled.div`
   flex-direction: column;
 `;
 
-export const Title = styled.span`
+const Title = styled.span`
   color: #1d1d1d;
   font-size: 24px;
   font-weight: 600;
@@ -27,7 +22,7 @@ export const Title = styled.span`
   margin-bottom: 30px;
 `;
 
-export const FormContainer = styled.div`
+const FormContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,7 +30,7 @@ export const FormContainer = styled.div`
   width: 550px;
 `;
 
-export const Row = styled.div`
+const Row = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -47,14 +42,14 @@ export const Row = styled.div`
     height: 125px;
   }
 `;
-export const Column = styled.div`
+const Column = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   flex-direction: column;
   width: 560px;
 `;
-export const Label = styled.label<{ error: boolean | any }>`
+const Label = styled.label<{ error: boolean | any }>`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -65,7 +60,7 @@ export const Label = styled.label<{ error: boolean | any }>`
   width: 100%;
 `;
 
-export const Input = styled.input<{ error?: boolean | any }>`
+const Input = styled.input<{ error?: boolean | any }>`
   border-radius: 8px;
   border: 1px solid ${({ error }) => (error ? "#e40f0f" : "#d5d5d5")};
   width: 265px;
@@ -74,7 +69,7 @@ export const Input = styled.input<{ error?: boolean | any }>`
   margin: 5px 0px;
   max-width: 245px;
 `;
-export const Select = styled.select<{ width: number; error: boolean | any }>`
+const Select = styled.select<{ width: number; error: boolean | any }>`
   border-radius: 8px;
   border: 1px solid ${({ error }) => (error ? "#e40f0f" : "#d5d5d5")};
   width: ${({ width }) => width}px;
@@ -83,14 +78,14 @@ export const Select = styled.select<{ width: number; error: boolean | any }>`
   margin: 5px 0px;
 `;
 
-export const SelectPokemon = styled.div`
+const SelectPokemon = styled.div`
   width: 450px;
   height: 200px;
   margin: 25px 0px;
   overflow-y: auto;
 `;
 
-export const StyledOption = styled.div<{ selected: boolean }>`
+const StyledOption = styled.div<{ selected: boolean }>`
   padding: 8px;
   cursor: pointer;
   border-bottom: 1px solid #d5d5d5;
@@ -101,7 +96,7 @@ export const StyledOption = styled.div<{ selected: boolean }>`
   }
 `;
 
-export const Span = styled.span`
+const Span = styled.span`
   color: #1d1d1d;
   font-family: Inter;
   font-size: 12px;
@@ -109,14 +104,14 @@ export const Span = styled.span`
   font-weight: 700;
   line-height: normal;
 `;
-export const SubSpan = styled.span`
+const SubSpan = styled.span`
   color: #747474;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 `;
-export const NovoPokemonButton = styled.div`
+const NovoPokemonButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,20 +128,20 @@ export const NovoPokemonButton = styled.div`
   margin: 20px 0px;
 `;
 
-export const Divider = styled.div`
+const Divider = styled.div`
   height: 1px;
   width: 550px;
   background: #d5d5d5;
   margin: 20px 0px;
 `;
 
-export const Info = styled.span`
+const Info = styled.span`
   color: #747474;
   font-size: 14px;
   font-weight: 400;
 `;
 
-export const SubInfo = styled.span`
+const SubInfo = styled.span`
   color: #747474;
   font-family: Inter;
   font-size: 8px;
@@ -156,13 +151,13 @@ export const SubInfo = styled.span`
   margin-bottom: 20px;
 `;
 
-export const Total = styled.span`
+const Total = styled.span`
   color: #1d1d1d;
   font-size: 24px;
   font-weight: 600;
 `;
 
-export const Button = styled.button`
+const Button = styled.button`
   width: 183px;
   height: 42px;
   border-radius: 30px;
@@ -175,7 +170,7 @@ export const Button = styled.button`
   }
 `;
 
-export const PokemonContainer = styled.div`
+const PokemonContainer = styled.div`
   border-radius: 8px;
   border: 1px solid #d5d5d5;
   width: 450px;
@@ -183,7 +178,7 @@ export const PokemonContainer = styled.div`
   padding: 8px;
 `;
 
-export const PokemonName = styled.span`
+const PokemonName = styled.span`
   color: #1d1d1d;
   font-size: 14px;
   font-style: normal;
@@ -195,15 +190,43 @@ export const PokemonName = styled.span`
   margin-top: -15px;
 `;
 
-export const CloseButton = styled.span`
+const CloseButton = styled.span`
   font-weight: 700;
   font-size: 18px;
   color: #a9a9a9;
   cursor: pointer;
 `;
 
-export const ErrorMessage = styled.span`
+const ErrorMessage = styled.span`
   font-weight: 500;
   font-size: 10px;
   color: #e40f0f;
 `;
+
+const Styled = {
+  Container,
+  MainContainer,
+  Title,
+  FormContainer,
+  Row,
+  Column,
+  Label,
+  Input,
+  Select,
+  SelectPokemon,
+  StyledOption,
+  Span,
+  SubSpan,
+  NovoPokemonButton,
+  Divider,
+  Info,
+  SubInfo,
+  Total,
+  Button,
+  PokemonContainer,
+  PokemonName,
+  CloseButton,
+  ErrorMessage,
+};
+
+export default Styled;

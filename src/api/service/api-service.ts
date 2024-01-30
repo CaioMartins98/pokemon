@@ -34,7 +34,7 @@ export class ApiServiceTimeScheduling implements ApiTimeService {
 @injectable()
 export class ApiServicePokemon implements PokemonService {
   async getPokemon(): Promise<PokemonListResponse> {
-    const response = await axios.get(`${process.env.NEXT_POKEMON_API}`);
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon`);
     return response.data;
   }
 }

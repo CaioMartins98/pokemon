@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import Home from "../src/pages/home";
+import Home from "../src/pages/home/index.page";
 import { useRouter } from "next/router";
 
 jest.mock("next/router", () => ({

@@ -1,13 +1,13 @@
 import React from "react";
-import { FooterContainer, FooterTitle } from "./styles";
+import Styled from "./styles";
 
 function Footer() {
   return (
-    <FooterContainer>
-      <FooterTitle>
-        Todas as marcas e ilustrações utilizadas são de seus resepctivos donos.
-      </FooterTitle>
-    </FooterContainer>
+    <Styled.FooterContainer>
+      <Styled.FooterTitle>
+        Todas as marcas e ilustrações utilizadas são de seus respectivos donos.
+      </Styled.FooterTitle>
+    </Styled.FooterContainer>
   );
 }
 

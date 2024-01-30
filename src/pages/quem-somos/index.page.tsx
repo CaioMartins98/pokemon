@@ -1,32 +1,32 @@
 import React from "react";
 import Header from "../../components/Header/header.component";
 import Head from "next/head";
-import { Container, Description, DescriptionContainer, MainContainer } from "./styles";
+import Styled from "./styles";
 import Footer from "../../components/Footer/footer.component";
-import HeaderPage from "../../components/HeaderPage/header-page.component";
+import SectionPage from "../../components/SectionPage/section-page.component";
 
 function QuemSomos() {
   return (
-    <Container data-testid="quem-somos-container">
+    <Styled.Container data-testid="quem-somos-container">
       <Head>
         <title>Quem somos | Centro Pokémon</title>
       </Head>
       <Header />
-      <HeaderPage
+      <SectionPage
         fromPage="Home"
         currentPage="Quem Somos"
         title="Quem Somos"
         subTitle="A maior rede de tratamento pokémon."
       />
-      <MainContainer>
-        <DescriptionContainer>
-          <Description fontSize={18} fontWeight={700}>
+      <Styled.MainContainer>
+        <Styled.DescriptionContainer>
+          <Styled.Description fontSize={18} fontWeight={700}>
             O Centro Pokémon
-          </Description>
-          <Description fontSize={16} fontWeight={600} mt={20}>
+          </Styled.Description>
+          <Styled.Description fontSize={16} fontWeight={600} mt={20}>
             Como funciona a cura de um pokémon?
-          </Description>
-          <Description fontSize={14} fontWeight={500} mt={20}>
+          </Styled.Description>
+          <Styled.Description fontSize={14} fontWeight={500} mt={20}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
             vel mi ut nunc sodales mattis eget at sem. Praesent mattis interdum
             nulla, quis molestie justo lacinia a. Curabitur rutrum ante a ligula
@@ -49,11 +49,11 @@ function QuemSomos() {
             augue a lacinia porttitor. Curabitur sed est sed metus gravida
             aliquet. Suspendisse potenti. Praesent condimentum pellentesque
             efficitur. Maecenas vel risus diam.
-          </Description>
-          <Description fontSize={16} fontWeight={600} mt={20}>
+          </Styled.Description>
+          <Styled.Description fontSize={16} fontWeight={600} mt={20}>
             Uma tradição de mais de 20 anos
-          </Description>
-          <Description fontSize={14} fontWeight={500} mt={20}>
+          </Styled.Description>
+          <Styled.Description fontSize={14} fontWeight={500} mt={20}>
             Etiam ac nisi sagittis, ullamcorper ex vel, dignissim urna. Mauris
             commodo diam ac purus elementum, nec molestie arcu tincidunt. Donec
             quis sollicitudin sapien, vitae tincidunt lorem. Sed vel est et orci
@@ -61,11 +61,11 @@ function QuemSomos() {
             malesuada vitae mi. Ut nec tellus ut lorem tincidunt iaculis. Mauris
             vulputate in ante at ultrices. Phasellus non ligula nec dolor
             suscipit dapibus nec at enim.
-          </Description>
-          <Description fontSize={16} fontWeight={600} mt={20}>
+          </Styled.Description>
+          <Styled.Description fontSize={16} fontWeight={600} mt={20}>
             O melhor para seu pokémon
-          </Description>
-          <Description fontSize={14} fontWeight={500} mt={20}>
+          </Styled.Description>
+          <Styled.Description fontSize={14} fontWeight={500} mt={20}>
             Quisque porta cursus metus, id posuere mi commodo ac. Proin auctor
             nisl eu mattis dignissim. Nullam efficitur, eros a sollicitudin
             dignissim, nunc risus sollicitudin nunc, vitae lacinia erat mi sed
@@ -81,11 +81,11 @@ function QuemSomos() {
             posuere ipsum. Morbi bibendum vel nulla in ullamcorper. Sed
             ultricies, est sed molestie varius, dolor ipsum ultricies enim, at
             dapibus nulla erat eu purus. Pellentesque non ultrices nulla.
-          </Description>
-          <Description fontSize={16} fontWeight={600} mt={20}>
+          </Styled.Description>
+          <Styled.Description fontSize={16} fontWeight={600} mt={20}>
             Alta Tecnologia
-          </Description>
-          <Description fontSize={14} fontWeight={500} mt={20}>
+          </Styled.Description>
+          <Styled.Description fontSize={14} fontWeight={500} mt={20}>
             Fusce vitae ex pharetra, gravida turpis in, pretium dui. Nulla
             fringilla odio sed dolor varius cursus vitae at lectus. Aenean
             fermentum ligula sed tincidunt venenatis. Mauris quis ligula lacus.
@@ -95,12 +95,12 @@ function QuemSomos() {
             Vivamus eget dictum dolor. Nullam in ullamcorper purus, vel pulvinar
             ex. Cras posuere feugiat auctor. Mauris sodales dolor quis rhoncus
             hendrerit.
-          </Description>
-        </DescriptionContainer>
-      </MainContainer>
+          </Styled.Description>
+        </Styled.DescriptionContainer>
+      </Styled.MainContainer>
 
       <Footer />
-    </Container>
+    </Styled.Container>
   );
 }
 

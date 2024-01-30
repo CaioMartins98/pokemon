@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledDialog = styled.dialog`
+const StyledDialog = styled.dialog`
   width: 410px;
   padding: 20px;
   border: 1px solid #df8686;
@@ -12,14 +12,14 @@ export const StyledDialog = styled.dialog`
   position: relative;
 `;
 
-export const Title = styled.span`
+const Title = styled.span`
   color: #1d1d1d;
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 20px;
 `;
 
-export const HeaderContainer = styled.div`
+const HeaderContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@ export const HeaderContainer = styled.div`
   margin: 10px 0px;
 `;
 
-export const Overlay = styled.div`
+const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -40,7 +40,7 @@ export const Overlay = styled.div`
   align-items: center;
 `;
 
-export const Button = styled.button`
+const Button = styled.button`
   width: 183px;
   height: 42px;
   border-radius: 30px;
@@ -54,16 +54,28 @@ export const Button = styled.button`
   }
 `;
 
-export const MessageContainer = styled.div`
+const MessageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
 `;
 
-export const Message = styled.span`
+const Message = styled.span`
   color: #747474;
   text-align: center;
   font-size: 14px;
   font-weight: 400;
 `;
+
+const StyledComponents = {
+  StyledDialog,
+  Title,
+  HeaderContainer,
+  Overlay,
+  Button,
+  MessageContainer,
+  Message,
+};
+
+export default StyledComponents;

@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Button,
-  HeaderContainer,
-  Message,
-  MessageContainer,
-  Overlay,
-  StyledDialog,
-  Title,
-} from "./styles";
+import Styled from "./styles";
 import Image from "next/image";
 
 interface CheckoutModalProps {
@@ -27,18 +19,18 @@ const CheckoutModal = ({
 }: CheckoutModalProps) => {
   if (!isOpen) return null;
   return (
-    <Overlay>
-      <StyledDialog open>
-        <HeaderContainer>
-          <Title>{title}</Title>
-        </HeaderContainer>
-        <Image src={icon} alt="icon" width={30} height={30}/>
-        <MessageContainer>
-          <Message>{message}</Message>
-        </MessageContainer>
-        <Button onClick={onClose}>Fazer novo agendamento</Button>
-      </StyledDialog>
-    </Overlay>
+    <Styled.Overlay>
+      <Styled.StyledDialog open>
+        <Styled.HeaderContainer>
+          <Styled.Title>{title}</Styled.Title>
+        </Styled.HeaderContainer>
+        <Image src={icon} alt="icon" width={30} height={30} />
+        <Styled.MessageContainer>
+          <Styled.Message>{message}</Styled.Message>
+        </Styled.MessageContainer>
+        <Styled.Button onClick={onClose}>Fazer novo agendamento</Styled.Button>
+      </Styled.StyledDialog>
+    </Styled.Overlay>
   );
 };
 export default CheckoutModal;

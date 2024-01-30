@@ -1,5 +1,5 @@
 import React from "react";
-import { CloseButton, HeaderContainer, Overlay, StyledDialog, Title } from "./styles";
+import Styled from "./styles";
 
 interface ModalProps {
   isOpen: boolean;
@@ -12,15 +12,15 @@ const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
   if (!isOpen) return null;
 
   return (
-    <Overlay>
-      <StyledDialog open>
-        <HeaderContainer>
-          <Title>{title}</Title>
-          <CloseButton onClick={onClose}>X</CloseButton>
-        </HeaderContainer>
+    <Styled.Overlay>
+      <Styled.StyledDialog open>
+        <Styled.HeaderContainer>
+          <Styled.Title>{title}</Styled.Title>
+          <Styled.CloseButton onClick={onClose}>X</Styled.CloseButton>
+        </Styled.HeaderContainer>
         {children}
-      </StyledDialog>
-    </Overlay>
+      </Styled.StyledDialog>
+    </Styled.Overlay>
   );
 };
 export default Modal;

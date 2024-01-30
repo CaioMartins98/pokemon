@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+const Container = styled.div`
   flex: 1;
   display: flex;
   height: 100vh;
@@ -8,11 +8,11 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   background-image: url("/images/pokemon-hero.jpg");
-  background-size: cover; 
+  background-size: cover;
   background-position: center;
 `;
 
-export const Description = styled.span`
+const Description = styled.span`
   font-size: 32px;
   color: #fff;
   font-weight: 700;
@@ -20,3 +20,8 @@ export const Description = styled.span`
   text-align: center;
 `;
 
+const Styled = {
+  Container,
+  Description,
+};
+export default Styled;

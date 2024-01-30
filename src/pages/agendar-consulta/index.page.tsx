@@ -3,32 +3,8 @@ import React, { useEffect, useMemo, useState } from "react";
 
 import Header from "../../components/Header/header.component";
 import Head from "next/head";
-import HeaderPage from "../../components/HeaderPage/header-page.component";
-import {
-  Button,
-  CloseButton,
-  Column,
-  Container,
-  Divider,
-  ErrorMessage,
-  FormContainer,
-  Info,
-  Input,
-  Label,
-  MainContainer,
-  NovoPokemonButton,
-  PokemonContainer,
-  PokemonName,
-  Row,
-  Select,
-  SelectPokemon,
-  Span,
-  StyledOption,
-  SubInfo,
-  SubSpan,
-  Title,
-  Total,
-} from "./style";
+import SectionPage from "../../components/SectionPage/section-page.component";
+import Styled from "./styles";
 import Footer from "../../components/Footer/footer.component";
 import { useForm, Controller } from "react-hook-form";
 import { QueryClient, dehydrate, useQuery } from "react-query";
@@ -65,11 +41,12 @@ function AgendarConsulta({
     watch,
     formState: { errors },
     reset,
-    resetField,
   } = useForm({
     resolver: yupResolver(agendarConsultaFormSchema),
   });
 
+  const horaConsulta = watch("horaAtendimento");
+  const dateSelected = watch("dataAtendimento");
   const [openCheckoutModal, setOpenCheckoutModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [offset, setOffset] = useState(20);
@@ -89,8 +66,6 @@ function AgendarConsulta({
 
   const today = new Date();
   const todayFormatted = moment(today).format("DD/MM/YYYY");
-
-  const dateSelected = watch("dataAtendimento");
   const { data: timeSchedulingData } = useQuery(
     "timeScheduling",
     () => getTimesList(dateSelected ? dateSelected : todayFormatted),
@@ -136,17 +111,13 @@ function AgendarConsulta({
     setSelectPokemon(null);
   };
 
-  useEffect(() => {
-    return;
-  }, []);
-
-  useEffect(() => {
+  const setPokemonLocalStorage = () => {
     const pokemonsStorage = localStorage?.getItem("@pokemons");
     if (pokemonsStorage) {
       const pokemonsArr = JSON.parse(pokemonsStorage);
       setPokemons(pokemonsArr);
     }
-  }, []);
+  };
 
   const removePokemon = (pokemon: PokemonEntity) => {
     const filter = pokemons.filter((item: any) => item.name !== pokemon.name);
@@ -154,6 +125,11 @@ function AgendarConsulta({
     setPokemons(filter);
     showToast(`${pokemon.name} removido com sucesso!`, "success");
   };
+
+  useEffect(() => {
+    pokemonList();
+    setPokemonLocalStorage();
+  }, []);
 
   useEffect(() => {
     if (listPokemon?.results) {
@@ -210,10 +186,6 @@ function AgendarConsulta({
     window.location.reload();
   };
 
-  useEffect(() => {
-    pokemonList();
-  }, []);
-
   const pokemonList = () => {
     if (listPokemon?.results) {
       const list = listPokemon?.results.map((pokemon) => {
@@ -222,7 +194,7 @@ function AgendarConsulta({
       return setListPokemons(list);
     }
   };
-  const horaConsulta = watch("horaAtendimento");
+
   const onSubmit = (data: any) => {
     if (pokemons.length === 0) {
       showToast("Adicione pelo menos 01 pokémon na consulta.", "error");
@@ -238,114 +210,126 @@ function AgendarConsulta({
   };
 
   return (
-    <Container>
+    <Styled.Container>
       <Head>
         <title>Agendar consulta | Centro Pokémon</title>
       </Head>
       <Header />
-      <HeaderPage
+      <SectionPage
         fromPage="Home"
         currentPage="Agendar consulta"
         title="Agendar consulta"
         subTitle="Recupere seus pokémons em 5 segundos"
       />
-      <MainContainer>
-        <Title>Preencha o formulário abaixo para agendar sua consulta</Title>
-        <FormContainer>
+      <Styled.MainContainer>
+        <Styled.Title>
+          Preencha o formulário abaixo para agendar sua consulta
+        </Styled.Title>
+        <Styled.FormContainer>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Row>
-              <Label error={errors.nome}>
+            <Styled.Row>
+              <Styled.Label error={errors.nome}>
                 Nome
-                <Input
+                <Styled.Input
                   error={errors.nome}
                   {...register("nome")}
                   placeholder="Digite seu nome"
                 />
                 {errors?.nome && (
-                  <ErrorMessage>{errors.nome?.message}</ErrorMessage>
+                  <Styled.ErrorMessage>
+                    {errors.nome?.message}
+                  </Styled.ErrorMessage>
                 )}
-              </Label>
-              <Label error={errors.sobrenome}>
+              </Styled.Label>
+              <Styled.Label error={errors.sobrenome}>
                 Sobrenome
-                <Input
+                <Styled.Input
                   error={errors.sobrenome}
                   {...register("sobrenome")}
                   placeholder="Digite seu sobrenome"
                 />
                 {errors?.sobrenome && (
-                  <ErrorMessage>{errors.sobrenome?.message}</ErrorMessage>
+                  <Styled.ErrorMessage>
+                    {errors.sobrenome?.message}
+                  </Styled.ErrorMessage>
                 )}
-              </Label>
-            </Row>
+              </Styled.Label>
+            </Styled.Row>
 
-            <Row>
-              <Label error={errors.regiao}>
+            <Styled.Row>
+              <Styled.Label error={errors.regiao}>
                 Região:
                 <Controller
                   control={control}
                   name="regiao"
                   render={({ field }) => (
-                    <Select {...field} width={265} error={errors.regiao}>
+                    <Styled.Select {...field} width={265} error={errors.regiao}>
                       <option value="" disabled selected hidden>
                         Selecione
                       </option>
                       <option value="regiao1">Kanto</option>
-                    </Select>
+                    </Styled.Select>
                   )}
                 />
                 {errors?.regiao && (
-                  <ErrorMessage>{errors.regiao?.message}</ErrorMessage>
+                  <Styled.ErrorMessage>
+                    {errors.regiao?.message}
+                  </Styled.ErrorMessage>
                 )}
-              </Label>
+              </Styled.Label>
 
-              <Label error={errors.cidade}>
+              <Styled.Label error={errors.cidade}>
                 Cidade:
                 <Controller
                   control={control}
                   name="cidade"
                   render={({ field }) => (
-                    <Select {...field} width={265} error={errors.cidade}>
+                    <Styled.Select {...field} width={265} error={errors.cidade}>
                       <option value="" disabled selected hidden>
                         Selecione
                       </option>
                       <option value="pewterCity">Pewter City</option>
                       <option value="Pallet Town">Pallet Town</option>
                       <option value="veridianCity">Veridian City</option>
-                    </Select>
+                    </Styled.Select>
                   )}
                 />
                 {errors?.cidade && (
-                  <ErrorMessage>{errors.cidade?.message}</ErrorMessage>
+                  <Styled.ErrorMessage>
+                    {errors.cidade?.message}
+                  </Styled.ErrorMessage>
                 )}
-              </Label>
-            </Row>
-            <Column>
-              <Span style={{ marginTop: 50 }}>Cadastre seu time</Span>
-              <SubSpan style={{ marginBottom: 30 }}>
+              </Styled.Label>
+            </Styled.Row>
+            <Styled.Column>
+              <Styled.Span style={{ marginTop: 50 }}>
+                Cadastre seu time
+              </Styled.Span>
+              <Styled.SubSpan style={{ marginBottom: 30 }}>
                 Atendemos até 06 pokémons por vez
-              </SubSpan>
-            </Column>
-            <Column>
+              </Styled.SubSpan>
+            </Styled.Column>
+            <Styled.Column>
               {pokemons.map((item: any, index: any) => (
                 <>
-                  <Row key={index}>
-                    <Span>Pokémon {index + 1}</Span>
+                  <Styled.Row key={index}>
+                    <Styled.Span>Pokémon {index + 1}</Styled.Span>
 
-                    <PokemonContainer style={{ marginRight: 13 }}>
-                      <CloseButton
+                    <Styled.PokemonContainer style={{ marginRight: 13 }}>
+                      <Styled.CloseButton
                         onClick={() => removePokemon(item)}
                         style={{ marginLeft: "95%" }}
                       >
                         X
-                      </CloseButton>
-                      <PokemonName>{item.name}</PokemonName>
-                    </PokemonContainer>
-                  </Row>
+                      </Styled.CloseButton>
+                      <Styled.PokemonName>{item.name}</Styled.PokemonName>
+                    </Styled.PokemonContainer>
+                  </Styled.Row>
                 </>
               ))}
-            </Column>
-            <Row>
-              <NovoPokemonButton
+            </Styled.Column>
+            <Styled.Row>
+              <Styled.NovoPokemonButton
                 onClick={() =>
                   pokemons.length === 6
                     ? showToast("Máximo de 06 pokémons por consulta.", "error")
@@ -353,16 +337,16 @@ function AgendarConsulta({
                 }
               >
                 Adicionar novo pokémon ao time +
-              </NovoPokemonButton>
-            </Row>
-            <Row>
-              <Label error={errors.dataAtendimento}>
+              </Styled.NovoPokemonButton>
+            </Styled.Row>
+            <Styled.Row>
+              <Styled.Label error={errors.dataAtendimento}>
                 Data para Atendimento:
                 <Controller
                   control={control}
                   name="dataAtendimento"
                   render={({ field }) => (
-                    <Select
+                    <Styled.Select
                       {...field}
                       width={265}
                       error={errors.dataAtendimento}
@@ -377,21 +361,23 @@ function AgendarConsulta({
                           </option>
                         </>
                       ))}
-                    </Select>
+                    </Styled.Select>
                   )}
                 />
                 {errors?.dataAtendimento && (
-                  <ErrorMessage>{errors.dataAtendimento?.message}</ErrorMessage>
+                  <Styled.ErrorMessage>
+                    {errors.dataAtendimento?.message}
+                  </Styled.ErrorMessage>
                 )}
-              </Label>
+              </Styled.Label>
 
-              <Label error={errors.horaAtendimento}>
+              <Styled.Label error={errors.horaAtendimento}>
                 Horário de Atendimento:
                 <Controller
                   control={control}
                   name="horaAtendimento"
                   render={({ field }) => (
-                    <Select
+                    <Styled.Select
                       error={errors.horaAtendimento}
                       {...field}
                       width={265}
@@ -407,52 +393,57 @@ function AgendarConsulta({
                           </option>
                         </>
                       ))}
-                    </Select>
+                    </Styled.Select>
                   )}
                 />
                 {errors?.horaAtendimento && (
-                  <ErrorMessage>{errors.horaAtendimento?.message}</ErrorMessage>
+                  <Styled.ErrorMessage>
+                    {errors.horaAtendimento?.message}
+                  </Styled.ErrorMessage>
                 )}
-              </Label>
-            </Row>
-            <Divider />
-            <Row>
-              <Info>Número de pokémons a serem atendidos:</Info>
-              <Info>{`0${pokemons.length}`}</Info>
-            </Row>
-            <Row>
-              <Info>Atendimento unitário por pokémon: </Info>
-              <Info>R$ 70,00</Info>
-            </Row>
-            <Row>
-              <Info>Subtotal:</Info>
-              <Info>{formatToBrl(total)}</Info>
-            </Row>
-            <Row>
-              <Info>Taxa geracional*: </Info>
-              <Info>R$ 0,00</Info>
-            </Row>
-            <Row>
-              <SubInfo>
+              </Styled.Label>
+            </Styled.Row>
+            <Styled.Divider />
+            <Styled.Row>
+              <Styled.Info>Número de pokémons a serem atendidos:</Styled.Info>
+              <Styled.Info>{`0${pokemons.length}`}</Styled.Info>
+            </Styled.Row>
+            <Styled.Row>
+              <Styled.Info>Atendimento unitário por pokémon: </Styled.Info>
+              <Styled.Info>R$ 70,00</Styled.Info>
+            </Styled.Row>
+            <Styled.Row>
+              <Styled.Info>Subtotal:</Styled.Info>
+              <Styled.Info>{formatToBrl(total)}</Styled.Info>
+            </Styled.Row>
+            <Styled.Row>
+              <Styled.Info>Taxa geracional*: </Styled.Info>
+              <Styled.Info>R$ 0,00</Styled.Info>
+            </Styled.Row>
+            <Styled.Row>
+              <Styled.SubInfo>
                 *adicionamos uma taxa de 3%, multiplicado pelo número da geração
                 mais alta do time, com limite de até 30%
-              </SubInfo>
-            </Row>
-            <Row>
-              <Total>Valor Total: {formatToBrl(total)}</Total>
-              <Button type="submit">Concluir agendamento</Button>
-            </Row>
+              </Styled.SubInfo>
+            </Styled.Row>
+            <Styled.Row>
+              <Styled.Total>Valor Total: {formatToBrl(total)}</Styled.Total>
+              <Styled.Button type="submit">Concluir agendamento</Styled.Button>
+            </Styled.Row>
           </form>
-        </FormContainer>
-      </MainContainer>
+        </Styled.FormContainer>
+      </Styled.MainContainer>
       <Modal isOpen={openModal} onClose={toggle} title="Adicione seu pokemon">
-        <SelectPokemon onScroll={handleScroll} style={{ marginRight: 13 }}>
+        <Styled.SelectPokemon
+          onScroll={handleScroll}
+          style={{ marginRight: 13 }}
+        >
           <option value="" disabled selected hidden>
             Selecione
           </option>
           {listPokemons.map((pokemon: any) => (
             <>
-              <StyledOption
+              <Styled.StyledOption
                 selected={
                   pokemons.some((item: any) => item.name === pokemon.name) ||
                   (selectPokemon && selectPokemon?.name === pokemon.name)
@@ -465,11 +456,11 @@ function AgendarConsulta({
                 }}
               >
                 {pokemon.name}
-              </StyledOption>
+              </Styled.StyledOption>
             </>
           ))}
-        </SelectPokemon>
-        <Button
+        </Styled.SelectPokemon>
+        <Styled.Button
           onClick={() => {
             pokemons.length === 6
               ? showToast("Máximo de 06 pokémons por consulta.", "error")
@@ -479,7 +470,7 @@ function AgendarConsulta({
           }}
         >
           Adicionar
-        </Button>
+        </Styled.Button>
       </Modal>
       {successScheduling ? (
         <CheckoutModal
@@ -500,7 +491,7 @@ function AgendarConsulta({
       )}
 
       <Footer />
-    </Container>
+    </Styled.Container>
   );
 }
 
