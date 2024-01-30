@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import QuemSomos from "../src/pages/quem-somos/index.page";
+import QuemSomos from "../src/pages/quem-somos";
 import 'next/router';
 
 jest.mock("next/router", () => ({

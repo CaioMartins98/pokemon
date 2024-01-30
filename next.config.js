@@ -18,7 +18,7 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js']
+  // pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js']
 };
 
 module.exports = nextConfig;
