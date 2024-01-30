@@ -26,6 +26,7 @@ import moment from "moment";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { agendarConsultaFormSchema } from "../../helpers/schemas/agendar-consulta";
 import CheckoutModal from "../../components/CheckoutModal/checkout-modal.component";
+import { formatDate } from "../../utils/formatDate";
 interface PokemonsProps {
   name: string;
   value: number;
@@ -79,10 +80,9 @@ function AgendarConsulta({
   };
 
   const today = new Date();
-  const todayFormatted = moment(today).format("DD/MM/YYYY");
   const { data: timeSchedulingData } = useQuery(
     "timeScheduling",
-    () => getTimesList(dateSelected ? dateSelected : todayFormatted),
+    () => getTimesList(dateSelected ? dateSelected : formatDate(today)),
     {
       initialData: [],
     }
