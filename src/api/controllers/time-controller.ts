@@ -6,7 +6,7 @@ import { TimeEntity } from "../entities/time-entity";
 export class TimeController {
   constructor(@inject("TimeUseCase") private timeUseCase: TimeUseCase) {}
 
-  async getTimes(): Promise<TimeEntity[]> {
-    return this.timeUseCase.getTimes();
+  async getTimes(date:string): Promise<TimeEntity[]> {
+    return this.timeUseCase.getTimes(date);
   }
 }

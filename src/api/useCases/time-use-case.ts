@@ -3,7 +3,7 @@ import { inject, injectable } from "inversify";
 import { ApiServiceTimeScheduling } from "../service/api-service";
 
 export interface TimeUseCase {
-  getTimes(): Promise<TimeEntity[]>;
+  getTimes(date?: string): Promise<TimeEntity[]>;
 }
 
 @injectable()
@@ -13,8 +13,9 @@ export class ImplTimeUseCase implements TimeUseCase {
     private timeApiService: ApiServiceTimeScheduling
   ) {}
 
-  async getTimes(): Promise<TimeEntity[]> {
-    const timeData = await this.timeApiService.fetch();
+  async getTimes(date?: string): Promise<TimeEntity[]> {
+    
+    const timeData = await this.timeApiService.fetch(date);
     return timeData.map((time) => new TimeEntity(time));
   }
 }

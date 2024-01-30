@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "../../components/Header/header.component";
 import Head from "next/head";
 import { Container, Description, DescriptionContainer, MainContainer } from "./styles";
@@ -7,9 +7,9 @@ import HeaderPage from "../../components/HeaderPage/header-page.component";
 
 function QuemSomos() {
   return (
-    <Container>
+    <Container data-testid="quem-somos-container">
       <Head>
-        <title>Quem somos</title>
+        <title>Quem somos | Centro Pokémon</title>
       </Head>
       <Header />
       <HeaderPage

@@ -14,7 +14,10 @@ const nextConfig = {
   sassOptions: {
     includePaths: ["./styles"],
   },
-  optimizeFonts: false
+  optimizeFonts: false,
+  compiler: {
+    styledComponents: true,
+  },
 };
 
 module.exports = nextConfig;

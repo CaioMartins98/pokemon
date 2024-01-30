@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+interface ErrorProps {
+  error?: boolean;
+}
+
+
 export const Container = styled.div`
   overflow-x: hidden;
 `;
@@ -48,38 +53,51 @@ export const Column = styled.div`
   justify-content: space-between;
   flex-direction: column;
   width: 560px;
-  margin: 50px 0px 20px 0px;
 `;
-export const Label = styled.label`
+export const Label = styled.label<{ error: boolean | any }>`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   flex-direction: column;
-  color: #1d1d1d;
+  color: ${({ error }) => (error ? "#e40f0f" : "#1d1d1d")};
   font-size: 12px;
   font-weight: 700;
   width: 100%;
 `;
-export const Input = styled.input`
+
+export const Input = styled.input<{ error?: boolean | any }>`
   border-radius: 8px;
-  border: 1px solid #d5d5d5;
+  border: 1px solid ${({ error }) => (error ? "#e40f0f" : "#d5d5d5")};
   width: 265px;
   height: 45px;
   padding: 0px 10px;
   margin: 5px 0px;
   max-width: 245px;
 `;
-export const Select = styled.select<{ width: number }>`
+export const Select = styled.select<{ width: number; error: boolean | any }>`
   border-radius: 8px;
-  border: 1px solid #d5d5d5;
+  border: 1px solid ${({ error }) => (error ? "#e40f0f" : "#d5d5d5")};
   width: ${({ width }) => width}px;
   height: 45px;
   padding: 0px 10px;
   margin: 5px 0px;
+`;
 
-  option {
-    color: #333;
-    background-color: #fff;
+export const SelectPokemon = styled.div`
+  width: 450px;
+  height: 200px;
+  margin: 25px 0px;
+  overflow-y: auto;
+`;
+
+export const StyledOption = styled.div<{ selected: boolean }>`
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid #d5d5d5;
+  background-color: ${({ selected }) => (selected ? "#e40f0f" : "transparent")};
+  color: ${({ selected }) => (selected ? "#FFF" : "#000")};
+  &:hover {
+    background-color: ${({ selected }) => (selected ? "#b30404" : "#f9f9f9")};
   }
 `;
 
@@ -155,4 +173,37 @@ export const Button = styled.button`
   &:hover {
     opacity: 0.6;
   }
+`;
+
+export const PokemonContainer = styled.div`
+  border-radius: 8px;
+  border: 1px solid #d5d5d5;
+  width: 450px;
+  height: 25px;
+  padding: 8px;
+`;
+
+export const PokemonName = styled.span`
+  color: #1d1d1d;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -15px;
+`;
+
+export const CloseButton = styled.span`
+  font-weight: 700;
+  font-size: 18px;
+  color: #a9a9a9;
+  cursor: pointer;
+`;
+
+export const ErrorMessage = styled.span`
+  font-weight: 500;
+  font-size: 10px;
+  color: #e40f0f;
 `;
