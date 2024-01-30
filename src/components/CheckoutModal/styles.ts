@@ -17,6 +17,9 @@ const Title = styled.span`
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 20px;
+  @media (max-width: 780px) {
+   text-align: center;
+  }
 `;
 
 const HeaderContainer = styled.div`

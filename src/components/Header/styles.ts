@@ -15,7 +15,8 @@ const HeaderContainer = styled.div`
 
   @media (max-width: 780px) {
     flex-direction: column;
-    height: 125px;
+    height: 135px;
+    margin-top: 5px;
   }
 `;
 
@@ -43,6 +44,9 @@ const Container = styled.div<{ width: number }>`
     cursor: pointer;
   }
   justify-content: center;
+  @media (max-width: 780px) {
+    margin-top: 10px;
+  }
 `;
 
 const shrinkAnimation = keyframes`

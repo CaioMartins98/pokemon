@@ -12,6 +12,9 @@ const MainContainer = styled.div`
   margin: 50px 0px;
   width: 100%;
   flex-direction: column;
+  @media (max-width: 780px) {
+    margin-left: 40%;
+  }
 `;
 
 const Title = styled.span`
@@ -20,6 +23,11 @@ const Title = styled.span`
   font-weight: 600;
   line-height: normal;
   margin-bottom: 30px;
+  @media (max-width: 780px) {
+    margin-right: 75%;
+    width: 100%;
+    font-size: 20px;
+  }
 `;
 
 const FormContainer = styled.div`
@@ -28,6 +36,9 @@ const FormContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 550px;
+  @media (max-width: 780px) {
+    width: 100%;
+  }
 `;
 
 const Row = styled.div`
@@ -39,7 +50,10 @@ const Row = styled.div`
   margin-bottom: 10px;
   @media (max-width: 780px) {
     flex-direction: column;
-    height: 125px;
+    width: 300px;
+    margin-top: 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 `;
 const Column = styled.div`
@@ -58,6 +72,9 @@ const Label = styled.label<{ error: boolean | any }>`
   font-size: 12px;
   font-weight: 700;
   width: 100%;
+  @media (max-width: 780px) {
+    margin-top: 10px;
+  }
 `;
 
 const Input = styled.input<{ error?: boolean | any }>`
@@ -83,6 +100,10 @@ const SelectPokemon = styled.div`
   height: 200px;
   margin: 25px 0px;
   overflow-y: auto;
+  @media (max-width: 780px) {
+    flex-direction: row;
+    width: 340px;
+  }
 `;
 
 const StyledOption = styled.div<{ selected: boolean | null }>`
@@ -93,6 +114,9 @@ const StyledOption = styled.div<{ selected: boolean | null }>`
   color: ${({ selected }) => (selected ? "#FFF" : "#000")};
   &:hover {
     background-color: ${({ selected }) => (selected ? "#b30404" : "#f9f9f9")};
+  }
+  @media (max-width: 780px) {
+    flex-direction: column;
   }
 `;
 
@@ -168,6 +192,10 @@ const Button = styled.button`
   &:hover {
     opacity: 0.6;
   }
+  @media (max-width: 780px) {
+    width: 250px;
+    margin-top: 20px;
+  }
 `;
 
 const PokemonContainer = styled.div`
@@ -176,6 +204,9 @@ const PokemonContainer = styled.div`
   width: 450px;
   height: 25px;
   padding: 8px;
+  @media (max-width: 780px) {
+    width: 250px;
+  }
 `;
 
 const PokemonName = styled.span`

@@ -26,6 +26,9 @@ const Description = styled.span<{
   color: #000;
   font-weight: ${({ fontWeight }) => fontWeight};
   margin-top: ${({ mt }) => `${mt}px`};
+  @media (max-width: 780px) {
+    font-size: 12px;
+  }
 `;
 
 const StyledComponents = {

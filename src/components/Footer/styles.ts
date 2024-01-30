@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const FooterContainer = styled.div`
   width: 100%;
@@ -14,11 +14,15 @@ const FooterContainer = styled.div`
 const FooterTitle = styled.span`
   color: #fff;
   font-size: 14px;
+  @media (max-width: 780px) {
+    width: 290px;
+    text-align: center;
+  }
 `;
 
 const StyledComponents = {
   FooterContainer,
-  FooterTitle
+  FooterTitle,
 };
 
 export default StyledComponents;

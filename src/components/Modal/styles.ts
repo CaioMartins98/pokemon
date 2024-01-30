@@ -11,6 +11,9 @@ const StyledDialog = styled.dialog`
   justify-content: center;
   border-radius: 8px;
   position: relative;
+  @media (max-width: 780px) {
+    width: 350px;
+  }
 `;
 
 const Title = styled.span`
