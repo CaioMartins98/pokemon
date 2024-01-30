@@ -85,7 +85,7 @@ const SelectPokemon = styled.div`
   overflow-y: auto;
 `;
 
-const StyledOption = styled.div<{ selected: boolean }>`
+const StyledOption = styled.div<{ selected: boolean | null }>`
   padding: 8px;
   cursor: pointer;
   border-bottom: 1px solid #d5d5d5;

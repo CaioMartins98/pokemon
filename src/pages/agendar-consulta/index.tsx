@@ -26,7 +26,19 @@ import moment from "moment";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { agendarConsultaFormSchema } from "../../helpers/schemas/agendar-consulta";
 import CheckoutModal from "../../components/CheckoutModal/checkout-modal.component";
-
+interface PokemonsProps {
+  name: string;
+  value: number;
+  url?: string;
+}
+interface DataValuesProps {
+  nome: string;
+  sobrenome: string;
+  regiao: string;
+  cidade: string;
+  dataAtendimento: string;
+  horaAtendimento: string;
+}
 function AgendarConsulta({
   pokemonList: listPokemon,
   dateSchedulingList,
@@ -50,17 +62,19 @@ function AgendarConsulta({
   const [openCheckoutModal, setOpenCheckoutModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [offset, setOffset] = useState(20);
-  const [pokemons, setPokemons] = useState<any>([]);
+  const [pokemons, setPokemons] = useState<PokemonsProps[]>([]);
   const [successScheduling, setSuccessScheduling] = useState(false);
-  const [selectPokemon, setSelectPokemon] = useState<any>({});
-  const [data, setData] = useState<any>({});
-  const [listPokemons, setListPokemons] = useState<any>([
+  const [selectPokemon, setSelectPokemon] = useState<PokemonsProps | null>(
+    null
+  );
+  const [data, setData] = useState<DataValuesProps>();
+  const [listPokemons, setListPokemons] = useState<PokemonsProps[]>([
     { name: "", url: "", value: 0 },
   ]);
 
   const timeService: ApiTimeService = new ApiServiceTimeScheduling();
 
-  const getTimesList = async (date: any) => {
+  const getTimesList = async (date: string) => {
     return timeService.fetch(date);
   };
 
@@ -74,15 +88,15 @@ function AgendarConsulta({
     }
   );
 
-  const total: any = useMemo(() => {
-    const newTotal = pokemons.reduce((acc: any, option: any) => {
+  const total: number = useMemo(() => {
+    const newTotal = pokemons.reduce((acc: number, option: PokemonsProps) => {
       return acc + option.value;
     }, 0);
 
     return newTotal;
   }, [pokemons]);
 
-  const showToast = (message: string, type: any) => {
+  const showToast = (message: string, type: string) => {
     if (type === "success") {
       return toast.success(message, {
         position: "top-right",
@@ -102,7 +116,7 @@ function AgendarConsulta({
       ...pokemon,
       value: 70,
     };
-    setPokemons((prevState: any) => [...prevState, newPokemon]);
+    setPokemons((prevState: PokemonsProps[]) => [...prevState, newPokemon]);
     localStorage.setItem(
       "@pokemons",
       JSON.stringify([...pokemons, newPokemon])
@@ -120,7 +134,9 @@ function AgendarConsulta({
   };
 
   const removePokemon = (pokemon: PokemonEntity) => {
-    const filter = pokemons.filter((item: any) => item.name !== pokemon.name);
+    const filter = pokemons.filter(
+      (item: PokemonsProps) => item.name !== pokemon.name
+    );
     localStorage.setItem("@pokemons", JSON.stringify(filter));
     setPokemons(filter);
     showToast(`${pokemon.name} removido com sucesso!`, "success");
@@ -133,7 +149,13 @@ function AgendarConsulta({
 
   useEffect(() => {
     if (listPokemon?.results) {
-      setListPokemons((prevList: any) => [...prevList, ...listPokemon.results]);
+      setListPokemons((prevList: PokemonsProps[]) => [
+        ...prevList,
+        ...listPokemon.results.map((pokemon) => ({
+          ...pokemon,
+          value: 70,
+        })),
+      ]);
     }
   }, [listPokemon]);
 
@@ -145,7 +167,7 @@ function AgendarConsulta({
           `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`
         );
         const data = await response.json();
-        setListPokemons((prevPokemons: []) => [
+        setListPokemons((prevPokemons: PokemonsProps[]) => [
           ...prevPokemons,
           ...data.results,
         ]);
@@ -157,11 +179,14 @@ function AgendarConsulta({
     fetchPokemons();
   }, [offset]);
 
-  const handleScroll = (event: any) => {
+  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
     if (offset >= listPokemon.count) return;
-    const { target } = event;
+    const { currentTarget } = event;
 
-    if (target.scrollHeight - target.scrollTop === target.clientHeight) {
+    if (
+      currentTarget?.scrollHeight - currentTarget?.scrollTop ===
+      currentTarget.clientHeight
+    ) {
       setOffset((prevOffset) => prevOffset + 20);
     }
   };
@@ -195,7 +220,7 @@ function AgendarConsulta({
     }
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: DataValuesProps) => {
     if (pokemons.length === 0) {
       showToast("Adicione pelo menos 01 pokémon na consulta.", "error");
     } else {
@@ -310,7 +335,7 @@ function AgendarConsulta({
               </Styled.SubSpan>
             </Styled.Column>
             <Styled.Column>
-              {pokemons.map((item: any, index: any) => (
+              {pokemons.map((item: PokemonsProps, index: number) => (
                 <>
                   <Styled.Row key={index}>
                     <Styled.Span>Pokémon {index + 1}</Styled.Span>
@@ -441,16 +466,20 @@ function AgendarConsulta({
           <option value="" disabled selected hidden>
             Selecione
           </option>
-          {listPokemons.map((pokemon: any) => (
+          {listPokemons.map((pokemon: PokemonsProps) => (
             <>
               <Styled.StyledOption
                 selected={
-                  pokemons.some((item: any) => item.name === pokemon.name) ||
+                  pokemons.some(
+                    (item: PokemonsProps) => item.name === pokemon.name
+                  ) ||
                   (selectPokemon && selectPokemon?.name === pokemon.name)
                 }
                 key={pokemon.name}
                 onClick={() => {
-                  pokemons.some((item: any) => item.name === pokemon.name)
+                  pokemons.some(
+                    (item: PokemonsProps) => item.name === pokemon.name
+                  )
                     ? {}
                     : setSelectPokemon(pokemon);
                 }}
@@ -476,7 +505,7 @@ function AgendarConsulta({
         <CheckoutModal
           title="Consulta Agendada"
           icon="/images/success.svg"
-          message={`Seu agendamento para o dia ${data.dataAtendimento}, às ${data.horaAtendimento} para 0${pokemons.length}x pokémons foi realizado com sucesso!`}
+          message={`Seu agendamento para o dia ${data?.dataAtendimento}, às ${data?.horaAtendimento} para 0${pokemons.length}x pokémons foi realizado com sucesso!`}
           onClose={onCloseCheckout}
           isOpen={openCheckoutModal}
         />
